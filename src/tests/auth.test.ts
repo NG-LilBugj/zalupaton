@@ -14,6 +14,7 @@ describe('Testing Auth', () => {
     it('response should have the Create userData', async () => {
       const userData: CreateUserDto = {
         email: 'test@email.com',
+        name: 'Ivan',
         password: 'q1w2e3r4!',
       };
 
@@ -23,6 +24,7 @@ describe('Testing Auth', () => {
       users.findOne = jest.fn().mockReturnValue(null);
       users.create = jest.fn().mockReturnValue({
         id: 1,
+        name: 'Ivan',
         email: userData.email,
         password: await bcrypt.hash(userData.password, 10),
       });
@@ -37,6 +39,7 @@ describe('Testing Auth', () => {
     it('response should have the Set-Cookie header with the Authorization token', async () => {
       const userData: CreateUserDto = {
         email: 'test@email.com',
+        name: 'Ivan',
         password: 'q1w2e3r4!',
       };
 
@@ -45,6 +48,7 @@ describe('Testing Auth', () => {
 
       users.findOne = jest.fn().mockReturnValue({
         id: 1,
+        name: 'Ivan',
         email: userData.email,
         password: await bcrypt.hash(userData.password, 10),
       });
