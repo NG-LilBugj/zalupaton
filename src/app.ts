@@ -25,7 +25,7 @@ class App {
     this.port = process.env.PORT || 8000;
     this.env = process.env.NODE_ENV || 'development';
 
-    this.connectToDatabase();
+    //this.connectToDatabase();
     this.initializeMiddlewares();
     this.initializeRoutes(routes);
     this.initializeSwagger();
@@ -45,7 +45,7 @@ class App {
   }
 
   private connectToDatabase() {
-    DB.sequelize.sync({ force: false });
+    //DB.sequelize.sync({ force: false });
   }
 
   private initializeMiddlewares() {
