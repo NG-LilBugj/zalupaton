@@ -5,7 +5,12 @@ import DB from '@databases';
 import { HttpException } from '@exceptions/HttpException';
 import { DataStoredInToken, RequestWithUser } from '@interfaces/auth.interface';
 
-const authMiddleware = async (req: RequestWithUser, res: Response, next: NextFunction): Promise<void> => {
+interface RequestWithCookies extends RequestWithUser {
+  cookies: any;
+  header: any;
+}
+
+const authMiddleware = async (req: RequestWithCookies, res: Response, next: NextFunction): Promise<void> => {
   try {
     const Authorization = req.cookies['Authorization'] || req.header('Authorization').split('Bearer ')[1] || null;
 
